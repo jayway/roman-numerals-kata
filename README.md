@@ -50,4 +50,6 @@ tests.
 MiniTest is a small Ruby test framework that is built into Ruby 1.9+.
 It supports both assert and spec style tests.
 
+## Clojure, Midje
 
+Midje is a nice, declarative testing library that also supports autotest.
