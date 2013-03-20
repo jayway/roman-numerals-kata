@@ -1,3 +1,5 @@
+var _ = require("underscore");
+
 var romans = {
     'M' : {
         value: 1000,
@@ -80,8 +82,6 @@ function calc(number,element,key) {
     }
     return [roman,number];
 }
-
-var _ = require("underscore");
 
 function decimalToRoman(number) {
     var roman = '';
