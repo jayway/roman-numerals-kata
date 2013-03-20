@@ -14,6 +14,7 @@
   "author": "Anders Janmyr",
   "license": "BSD",
   "devDependencies": {
-    "buster": "~0.6.12"
+    "buster": "~0.6.12",
+    "underscore": "1.4.4"
   }
 }

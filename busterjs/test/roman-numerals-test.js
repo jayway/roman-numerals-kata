@@ -65,10 +65,18 @@ buster.testCase('decimalToRoman', {
     'returns L for 50': function() {
         assert.equals(decimalToRoman(50), 'L');
     },
+    'returns XCVIII for 98': function() {
+        assert.equals(decimalToRoman(98), 'XCVIII');
+    },
+    'returns XCIX for 99': function() {
+        assert.equals(decimalToRoman(99), 'XCIX');
+    },
     'returns C for 100': function() {
         assert.equals(decimalToRoman(100), 'C');
     },
-
+    'returns CCCXCVIII for 398': function() {
+        assert.equals(decimalToRoman(398), 'CCCXCVIII');
+    },
     'returns D for 500': function() {
         assert.equals(decimalToRoman(500), 'D');
     },
