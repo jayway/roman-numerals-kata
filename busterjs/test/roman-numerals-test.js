@@ -83,7 +83,6 @@ buster.testCase('decimalToRoman', {
     'returns M for 1000': function() {
         assert.equals(decimalToRoman(1000), 'M');
     },
-
     'returns MMMM for 4000': function() {
         assert.equals(decimalToRoman(4000), 'MMMM');
     }

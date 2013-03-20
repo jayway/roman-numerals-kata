@@ -1,41 +1,77 @@
 var romans = {
-    'M' : [1000,3,'CM'],
-    'D' : [500,1],
-    'C' : [100,3,'XC','CD'],
-    'L' : [50,1],
-    'X' : [10,3,'IX','XL'],
-    'V' : [5,1,null,'IX'],
-    'I' : [1,3,null,'IV']
+    'M' : {
+        value: 1000,
+        maxStreak: 3,
+        nextValue: 'CM',
+        beforeValue: null
+    },
+    'D': {
+        value: 500,
+        maxStreak: 1,
+        nextValue: null,
+        beforeValue: null
+    },
+    'C' : {
+        value: 100,
+        maxStreak: 3,
+        nextValue: 'XC',
+        beforeValue: 'CD'
+    },
+    'L': {
+        value: 50,
+        maxStreak: 1,
+        nextValue: null,
+        beforeValue: null
+    },
+    'X' : {
+        value: 10,
+        maxStreak: 3,
+        nextValue: 'IX',
+        beforeValue: 'XL'
+    },
+    'V': {
+        value: 5,
+        maxStreak: 1,
+        nextValue: null,
+        beforeValue: 'IX'
+    },
+    'I': {
+        value: 1,
+        maxStreak: 3,
+        nextValue: null,
+        beforeValue: 'IV'
+    }
 };
 
 function calc(number,element,key) {
     var roman='';
     var cont = true;
-    var value = element[0];
-    var max = element[1];
-    var nextValue = element[2];
-    var beforeValue = element[3];
-    /*console.log(value);
-    console.log(max);
-    console.log(nextValue);*/
-    console.log(value+" "+ max +" "+nextValue);
+    console.log('----------');
+    console.log(element.value+" "+ element.maxStreak +" "+element.nextValue);
     while (cont) {
-        if (max===1) cont = false;
+        if (element.maxStreak===1) cont = false;
 
-        if (beforeValue && number / value >= 4) {
-            roman+=beforeValue;
-            if (!nextValue) number -= value*2-1;
+        if (!element.nextValue && number / element.value >= 1 ) {
+            if (number % element.value >= 4) {
+                roman+=element.beforeValue;
+                number -= element.value*2-1;
+                cont = false;
+            }
+        }
+        if (element.beforeValue && number / element.value >= 4) {
+            roman+=element.beforeValue;
+            if (!element.nextValue) number -= element.value*2-1;
             else
-            number -= value*4;
+            number -= element.value*4;
             cont = false;
         }
-        else if (number / value >= 1) {
+        else if (number / element.value >= 1) {
             roman+=key;
-            number -= value;
+            number -= element.value;
         }
-        else if (nextValue && number / (value-(value/10)) >= 1) {
-            roman+=nextValue;
-            number -= (value-(value/10));
+        else if (element.nextValue && number / (element.value-(element.value/10)) >= 1) {
+            roman+=element.nextValue;
+            number -= (element.value-(element.value/10));
         }
         else {
             cont = false;
@@ -45,24 +81,6 @@ function calc(number,element,key) {
     return [roman,number];
 }
 
-/*
-* if (number / 100 >= 4) {
- roman+='CD';
- number -= 400;
- cont = false;
- }
- else if (number / 100 >= 1) {
- roman+='C';
- number -= 100;
- }
- else if (number / 90 >= 1) {
- roman+='XC';
- number -= 90;
- }
- else {
- cont = false;
- }
-* */
 var _ = require("underscore");
 
 function decimalToRoman(number) {
@@ -78,98 +96,6 @@ function decimalToRoman(number) {
         number=ret[1];
         roman+=ret[0];
     });
-
-    /*var cont = true;
-    while (cont) {
-        if (number / 1000 >= 1) {
-            roman+='M';
-            number -= 1000
-        }
-        else if (number / 900 >= 1) {
-            roman+='CM';
-            number -= 900;
-        }
-        else {
-            cont = false;
-        }
-    }
-    if (number / 500 >= 1) {
-        roman+='D';
-        number -= 500;
-    }
-    var cont = true;
-    while (cont) {
-        if (number / 100 >= 4) {
-            roman+='CD';
-            number -= 400;
-            cont = false;
-        }
-        else if (number / 100 >= 1) {
-            roman+='C';
-            number -= 100;
-        }
-        else if (number / 90 >= 1) {
-            roman+='XC';
-            number -= 90;
-        }
-        else {
-            cont = false;
-        }
-    }
-
-    if (number / 50 >= 1) {
-        if (number % 50 >= 4) {
-            roman+='IL';
-            number -= 49;
-            cont = false;
-        }
-        roman+='L';
-        number -= 50;
-    }
-
-    var cont = true;
-    while (cont) {
-        if (number / 10 >= 4) {
-            roman+='X';
-            number -= 40;
-            cont = false;
-        }
-        else if (number / 10 >= 1) {
-            roman+='X';
-            number -= 10;
-        }
-        else {
-            cont = false;
-        }
-    }
-
-    if (number / 5 >= 1 ) {
-        if (number % 5 >= 4) {
-            roman+='IX';
-            number -= 9;
-            cont = false;
-        }
-        else {
-            roman+='V';
-            number -= 5;
-        }
-    }
-
-    var cont = true;
-    while (cont) {
-        if (number / 1 >= 4) {
-            roman+='IV';
-            number -= 4;
-            cont = false;
-        }
-        else if (number >= 1) {
-            roman+='I';
-            number -= 1;
-        }
-        else {
-            cont = false;
-        }
-    }  */
 
     return roman;
 
