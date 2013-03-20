@@ -66,6 +66,7 @@ function calc(number,element,key) {
 var _ = require("underscore");
 
 function decimalToRoman(number) {
+    var roman = '';
 
     if (number === 0) {
         return 'nothing';
