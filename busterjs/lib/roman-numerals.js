@@ -1,10 +1,5 @@
 function decimalToRoman(number) {
-    /*if (number === 0) {
-        return 'nothing';
-    } else if (number === 1) {
-        return 'I';
-    } else return undefined;
-      */
+
     var roman = '';
     if (number === 0) {
         return 'nothing';
@@ -93,14 +88,8 @@ function decimalToRoman(number) {
         }
     }
 
-
     return roman;
-    /*500
-    100
-    50
-    10
-    5
-    1 */
+
 }
 
 module.exports = decimalToRoman;
