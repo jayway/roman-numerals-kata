@@ -1,5 +1,4 @@
 function decimalToRoman(number) {
-
     var roman = '';
     if (number === 0) {
         return 'nothing';
