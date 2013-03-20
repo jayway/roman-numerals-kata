@@ -46,8 +46,6 @@ var romans = {
 function calc(number,element,key) {
     var roman='';
     var cont = true;
-    console.log('----------');
-    console.log(element.value+" "+ element.maxStreak +" "+element.nextValue);
     while (cont) {
         if (element.maxStreak===1) cont = false;
 
@@ -60,9 +58,12 @@ function calc(number,element,key) {
         }
         if (element.beforeValue && number / element.value >= 4) {
             roman+=element.beforeValue;
-            if (!element.nextValue) number -= element.value*2-1;
-            else
-            number -= element.value*4;
+            if (!element.nextValue) {
+                number -= element.value*2-1;
+            }
+            else {
+                number -= element.value*4;
+            }
             cont = false;
         }
         else if (number / element.value >= 1) {
@@ -77,7 +78,6 @@ function calc(number,element,key) {
             cont = false;
         }
     }
-    console.log(roman);
     return [roman,number];
 }
 
@@ -91,14 +91,12 @@ function decimalToRoman(number) {
     }
     var roman = '';
     _.each(romans, function(element,key){
-        //console.log(element,key);
-         var ret = calc(number,element,key);
+        var ret = calc(number,element,key);
         number=ret[1];
         roman+=ret[0];
     });
 
     return roman;
-
 }
 
 module.exports = decimalToRoman;
