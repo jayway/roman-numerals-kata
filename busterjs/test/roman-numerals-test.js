@@ -57,7 +57,7 @@ buster.testCase('decimalToRoman', {
         assert.equals(decimalToRoman(40), 'XL');
     },
     'returns XLIX for 49': function() {
-        assert.equals(decimalToRoman(50), 'XLIX');
+        assert.equals(decimalToRoman(49), 'XLIX');
     },
     'returns L for 50': function() {
         assert.equals(decimalToRoman(50), 'L');
