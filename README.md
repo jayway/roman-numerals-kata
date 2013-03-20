@@ -53,3 +53,7 @@ It supports both assert and spec style tests.
 ## Clojure, Midje
 
 Midje is a nice, declarative testing library that also supports autotest.
+
+## ClojureScript, Busterjs
+
+For those who want to explore ClojureScript while testing with plain Busterjs.
